@@ -123,6 +123,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="test.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

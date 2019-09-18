@@ -25,40 +25,56 @@ namespace VideoSubtitler
             
         }
 
-        private void Button1_Click_1(object sender, EventArgs e)
+        private void BtnPlayBack_Click(object sender, EventArgs e)
         {
-
-            videoView.Play();
-
+            if (videoView.IsPlaying)
+            {
+                videoView.Stop();
+            }
+            else {
+                videoView.PositionInt = valPosition.Value;
+                videoView.Play();
+            }
+           
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void MainTimer_Tick(object sender, EventArgs e)
         {
             int pos = videoView.PositionInt;
             int len= Math.Max(pos, videoView.LengthInt);
-            trackBar1.Maximum = len;
+            valPosition.Maximum = len;
             if(!lockpos)
-            trackBar1.Value = pos;
-            label1.Text = videoView.Position.ToString("hh\\:mm\\:ss\\.fff");
+            valPosition.Value = pos;
+            lblTime.Text = videoView.Position.ToString("hh\\:mm\\:ss\\.fff");
         }
 
         bool lockpos = false;
-        private void TrackBar1_MouseDown(object sender, MouseEventArgs e)
+        private void ValPosition_MouseDown(object sender, MouseEventArgs e)
         {
             lockpos = true;
         }
 
-        private void TrackBar1_MouseUp(object sender, MouseEventArgs e)
+        private void ValPosition_MouseUp(object sender, MouseEventArgs e)
         {
-            videoView.PositionInt = trackBar1.Value;
+            videoView.PositionInt = valPosition.Value;
             lockpos = false;
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void VideoView_PlayStateChanged(object sender, EventArgs e)
         {
-            videoView.Stop();
+            btnPlayStop.Text = videoView.IsPlaying ? "STOP" : "PLAY";
         }
 
+        private void ValPlaybackSpeed_Scroll(object sender, EventArgs e)
+        {
+            double speed = (double)valPlaybackSpeed.Value / 10;
+            lblPlayBackSpeed.Text = speed + "x";
+            videoView.PlayBackSpeed = speed;
+        }
 
+        private void ValPosition_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }

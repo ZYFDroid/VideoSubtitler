@@ -64,6 +64,16 @@ namespace VideoSubtitler
             }
         }
 
+        public double PlayBackSpeed {
+            get {
+                return MediaElement.SpeedRatio;
+            }
+            set
+            {
+                MediaElement.SpeedRatio=value;
+            }
+        }
+
         public void SetVideoFile(string videoFile) {
             FileInfo file = new FileInfo(videoFile);
             Uri u = null;
@@ -87,12 +97,21 @@ namespace VideoSubtitler
                 MediaElement.Stop();
             }
             MediaElement.Play();
-            _isPlaying = true;
+            _isEnded = false;
+            if (_isPlaying != true)
+            {
+                _isPlaying = true;
+                PlayStateChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void Stop() {
             MediaElement.Pause();
-            _isPlaying = false;
+            if (_isPlaying != false)
+            {
+                _isPlaying = false;
+                PlayStateChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void VideoView_Load(object sender, EventArgs e)
@@ -104,8 +123,10 @@ namespace VideoSubtitler
         {
             _isEnded = true;
             _isPlaying = false;
+            PlayStateChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        public event EventHandler<EventArgs> PlayStateChanged;
         private void ElementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
