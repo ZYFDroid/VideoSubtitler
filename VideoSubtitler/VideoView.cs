@@ -123,6 +123,7 @@ namespace VideoSubtitler
         {
             _isEnded = true;
             _isPlaying = false;
+            MediaElement.Pause();
             PlayStateChanged?.Invoke(this, EventArgs.Empty);
         }
 
