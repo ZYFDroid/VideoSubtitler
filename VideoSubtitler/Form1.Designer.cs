@@ -74,12 +74,14 @@
             this.btnEndAdd = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.立刻保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关闭工程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -190,6 +192,7 @@
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnEditSubtitle
             // 
@@ -206,7 +209,6 @@
             this.listAddedSubtitles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listAddedSubtitles.CheckBoxes = true;
             this.listAddedSubtitles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colStartTime,
             this.colContent});
@@ -457,6 +459,7 @@
             this.btnAddByHind.TabIndex = 1;
             this.btnAddByHind.TabStop = true;
             this.btnAddByHind.Text = "手动添加";
+            this.btnAddByHind.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BtnAddByHind_LinkClicked);
             // 
             // btnClear
             // 
@@ -467,13 +470,13 @@
             this.btnClear.TabIndex = 2;
             this.btnClear.TabStop = true;
             this.btnClear.Text = "清空列表";
+            this.btnClear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BtnClear_LinkClicked);
             // 
             // listReadyAdd
             // 
             this.listReadyAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listReadyAdd.CheckBoxes = true;
             this.listReadyAdd.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2});
             this.listReadyAdd.FullRowSelect = true;
@@ -515,6 +518,7 @@
             this.btnUnDo.TabIndex = 4;
             this.btnUnDo.Text = "撤销刚才一条";
             this.btnUnDo.UseVisualStyleBackColor = true;
+            this.btnUnDo.Click += new System.EventHandler(this.BtnUnDo_Click);
             // 
             // splitContainer6
             // 
@@ -690,50 +694,67 @@
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.立刻保存ToolStripMenuItem,
-            this.关闭工程ToolStripMenuItem,
+            this.mnuSave,
+            this.mnuExport,
+            this.mnuCloseProject,
             this.toolStripSeparator1,
-            this.退出ToolStripMenuItem});
+            this.mnuExit,
+            this.mnuExitNoSave});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
-            // 立刻保存ToolStripMenuItem
+            // mnuSave
             // 
-            this.立刻保存ToolStripMenuItem.Name = "立刻保存ToolStripMenuItem";
-            this.立刻保存ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.立刻保存ToolStripMenuItem.Text = "立刻保存";
+            this.mnuSave.Name = "mnuSave";
+            this.mnuSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuSave.Text = "立刻保存";
+            this.mnuSave.Click += new System.EventHandler(this.MnuSave_Click);
             // 
-            // 关闭工程ToolStripMenuItem
+            // mnuExport
             // 
-            this.关闭工程ToolStripMenuItem.Name = "关闭工程ToolStripMenuItem";
-            this.关闭工程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.关闭工程ToolStripMenuItem.Text = "关闭工程";
+            this.mnuExport.Name = "mnuExport";
+            this.mnuExport.Size = new System.Drawing.Size(180, 22);
+            this.mnuExport.Text = "导出字幕";
+            // 
+            // mnuCloseProject
+            // 
+            this.mnuCloseProject.Name = "mnuCloseProject";
+            this.mnuCloseProject.Size = new System.Drawing.Size(180, 22);
+            this.mnuCloseProject.Text = "关闭工程";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // 退出ToolStripMenuItem
+            // mnuExit
             // 
-            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.退出ToolStripMenuItem.Text = "退出";
+            this.mnuExit.Name = "mnuExit";
+            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.Text = "退出";
+            this.mnuExit.Click += new System.EventHandler(this.MnuExit_Click);
+            // 
+            // mnuExitNoSave
+            // 
+            this.mnuExitNoSave.Name = "mnuExitNoSave";
+            this.mnuExitNoSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuExitNoSave.Text = "不保存退出";
+            this.mnuExitNoSave.Click += new System.EventHandler(this.MnuExitNoSave_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.关于ToolStripMenuItem});
+            this.mnuAbout});
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
             this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.帮助ToolStripMenuItem.Text = "帮助";
             // 
-            // 关于ToolStripMenuItem
+            // mnuAbout
             // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.关于ToolStripMenuItem.Text = "关于";
+            this.mnuAbout.Name = "mnuAbout";
+            this.mnuAbout.Size = new System.Drawing.Size(100, 22);
+            this.mnuAbout.Text = "关于";
             // 
             // openFileDialog1
             // 
@@ -749,6 +770,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "视频加字幕神器";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -839,17 +861,19 @@
         private System.Windows.Forms.Button btnSub1Sec;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 立刻保存ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关闭工程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuSave;
+        private System.Windows.Forms.ToolStripMenuItem mnuCloseProject;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuAbout;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.ToolStripMenuItem mnuExport;
+        private System.Windows.Forms.ToolStripMenuItem mnuExitNoSave;
     }
 }
 

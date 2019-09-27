@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,8 +57,11 @@ namespace VideoSubtitler
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            videoView.SetVideoFile("test.mp4");
-            
+            videoView.SetVideoFile("video.mp4");
+            if (File.Exists("sub.json")) {
+                load();
+                loadAddedView();
+            }
         }
 
         private void BtnPlayBack_Click(object sender, EventArgs e)
@@ -73,6 +77,13 @@ namespace VideoSubtitler
            
         }
 
+        public void save() {
+            File.WriteAllText("sub.json", JsonConvert.SerializeObject(addedSubtitles));
+        }
+
+        public void load() {
+            addedSubtitles = JsonConvert.DeserializeObject<List<SubtitleClass>>(File.ReadAllText("sub.json"));
+        }
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             int pos = videoView.PositionInt;
@@ -178,6 +189,7 @@ namespace VideoSubtitler
             addedSubtitles.AddRange(currentAddedSubtitles);
             currentAddedSubtitles.Clear();
             loadAddedView();
+            save();
         }
 
 
@@ -205,10 +217,12 @@ namespace VideoSubtitler
         TimeSpan tempBegin = TimeSpan.Zero;
         TimeSpan tempEnd = TimeSpan.Zero;
         string tempCurrent;
+        bool pressed = false;
         private void BtnCurrent_MouseDown(object sender, MouseEventArgs e)
         {
             if (currentAddingSubs.Count > 0)
             {
+                pressed = true;
                 tempCurrent = currentAddingSubs[0];
                 tempBegin = videoView.Position;
                 currentAddingSubs.RemoveAt(0);
@@ -220,11 +234,15 @@ namespace VideoSubtitler
 
         private void BtnCurrent_MouseUp(object sender, MouseEventArgs e)
         {
-            tempEnd = videoView.Position;
-            currentAddedSubtitles.Add(new SubtitleClass(tempCurrent,tempBegin,tempEnd));
-            lblRealTimeSubtitle.Text = "";
-            btnCurrent.Text = ">  <";
-            refreshAddSubView();
+            if (pressed)
+            {
+                tempEnd = videoView.Position;
+                currentAddedSubtitles.Add(new SubtitleClass(tempCurrent, tempBegin, tempEnd));
+                lblRealTimeSubtitle.Text = "";
+                btnCurrent.Text = ">  <";
+                refreshAddSubView();
+            }
+            pressed = false;
         }
 
         private void BtnCurrent_Click(object sender, EventArgs e)
@@ -234,9 +252,85 @@ namespace VideoSubtitler
 
         void loadAddedView() {
             listAddedSubtitles.Items.Clear();
-            foreach (SubtitleClass sub in addedSubtitles.OrderBy(t => t.BeginTime)) {
+            addedSubtitles.Sort();
+            foreach (SubtitleClass sub in addedSubtitles) {
                 listAddedSubtitles.Items.Add(new ListViewItem(new string[] { sub.BeginTime.ToString("hh\\:mm\\:ss\\.fff"), sub.Content }));
             }
         }
+
+        private void BtnClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Confirm("清空列表？", delegate {
+                readyAddingSubs.Clear();
+                loadPreAddingList();
+            });
+            
+        }
+
+
+        public delegate void ConformAction();
+        public static void Confirm(string str, ConformAction action)
+        {
+            if (MessageBox.Show( str, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                action.Invoke();
+            }
+        }
+
+        private void MnuSave_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
+        private void MnuExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void MnuExitNoSave_Click(object sender, EventArgs e)
+        {
+            Confirm("是否不保存退出？", delegate
+            {
+                Confirm("再次确认:是否不保存退出？", delegate
+                {
+                    this.FormClosing -= Form1_FormClosing;
+                    Application.Exit();
+                });
+            });
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            save();
+            Application.Exit();
+        }
+
+        private void BtnUnDo_Click(object sender, EventArgs e)
+        {
+            if (currentAddedSubtitles.Count > 0) {
+                SubtitleClass sub = currentAddedSubtitles[currentAddedSubtitles.Count - 1];
+                currentAddedSubtitles.RemoveAt(currentAddedSubtitles.Count - 1);
+                videoView.Position = sub.BeginTime - TimeSpan.FromSeconds(1);
+                currentAddingSubs.Add(sub.Content);
+                refreshAddSubView();
+            }
+        }
+
+        private void BtnAddByHind_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmAddByManual frmAddByManual = new FrmAddByManual();
+            if (frmAddByManual.ShowDialog() == DialogResult.OK) {
+                readyAddingSubs.AddRange(frmAddByManual.textBox1.Lines);
+                loadPreAddingList();
+            }
+            frmAddByManual.Dispose();
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+ 
     }
 }
