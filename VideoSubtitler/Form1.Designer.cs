@@ -48,7 +48,6 @@
             this.btnSub5Sec = new System.Windows.Forms.Button();
             this.btnSub1Sec = new System.Windows.Forms.Button();
             this.lblRealTimeSubtitle = new System.Windows.Forms.Label();
-            this.videoView = new VideoSubtitler.VideoView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -83,6 +82,7 @@
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.videoView = new VideoSubtitler.VideoView();
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -203,6 +203,7 @@
             this.btnEditSubtitle.TabIndex = 1;
             this.btnEditSubtitle.Text = "修改内容";
             this.btnEditSubtitle.UseVisualStyleBackColor = true;
+            this.btnEditSubtitle.Click += new System.EventHandler(this.BtnEditSubtitle_Click);
             // 
             // listAddedSubtitles
             // 
@@ -360,21 +361,6 @@
             this.lblRealTimeSubtitle.TabIndex = 4;
             this.lblRealTimeSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // videoView
-            // 
-            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.videoView.BackColor = System.Drawing.Color.Black;
-            this.videoView.Location = new System.Drawing.Point(3, 3);
-            this.videoView.Name = "videoView";
-            this.videoView.PlayBackSpeed = 1D;
-            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
-            this.videoView.PositionInt = 0;
-            this.videoView.Size = new System.Drawing.Size(468, 275);
-            this.videoView.TabIndex = 0;
-            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -436,7 +422,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnClear);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 15);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(465, 12);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(465, 14);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // btnAddFromTxt
@@ -458,7 +444,7 @@
             this.btnAddByHind.Size = new System.Drawing.Size(53, 12);
             this.btnAddByHind.TabIndex = 1;
             this.btnAddByHind.TabStop = true;
-            this.btnAddByHind.Text = "手动添加";
+            this.btnAddByHind.Text = "编辑列表";
             this.btnAddByHind.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BtnAddByHind_LinkClicked);
             // 
             // btnClear
@@ -716,6 +702,7 @@
             this.mnuExport.Name = "mnuExport";
             this.mnuExport.Size = new System.Drawing.Size(180, 22);
             this.mnuExport.Text = "导出字幕";
+            this.mnuExport.Click += new System.EventHandler(this.MnuExport_Click);
             // 
             // mnuCloseProject
             // 
@@ -759,6 +746,21 @@
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "文本文件|*.txt";
+            // 
+            // videoView
+            // 
+            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoView.BackColor = System.Drawing.Color.Black;
+            this.videoView.Location = new System.Drawing.Point(3, 3);
+            this.videoView.Name = "videoView";
+            this.videoView.PlayBackSpeed = 1D;
+            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
+            this.videoView.PositionInt = 0;
+            this.videoView.Size = new System.Drawing.Size(468, 275);
+            this.videoView.TabIndex = 0;
+            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
             // 
             // Form1
             // 

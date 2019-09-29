@@ -1,1 +1,1 @@
-ffmpeg -i test.mp4 -vf subtitles=test.srt:force_style='Fontsize=33,Fontname=ËÎÌו,' -y testout.mp4
+ffmpeg -i video.mp4 -vf subtitles=video.srt:force_style='Fontsize=25,Fontname=ËÎÌו,' -y merged.mp4

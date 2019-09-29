@@ -319,7 +319,9 @@ namespace VideoSubtitler
         private void BtnAddByHind_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FrmAddByManual frmAddByManual = new FrmAddByManual();
+            frmAddByManual.textBox1.Text = combine(readyAddingSubs);
             if (frmAddByManual.ShowDialog() == DialogResult.OK) {
+                readyAddingSubs.Clear();
                 readyAddingSubs.AddRange(frmAddByManual.textBox1.Lines);
                 loadPreAddingList();
             }
@@ -328,9 +330,56 @@ namespace VideoSubtitler
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            
+            Confirm("是否删除选中的内容", delegate
+            {
+                List<ListViewItem> selectedItems = new List<ListViewItem>();
+                foreach (ListViewItem item in listAddedSubtitles.SelectedItems) {
+                    selectedItems.Add(item);
+                }
+
+                IEnumerable < int> deleteIndexs = from i in selectedItems orderby i.Index descending select i.Index;
+                deleteIndexs.ToList().ForEach(item => addedSubtitles.RemoveAt(item));
+                loadAddedView();
+            });
         }
 
- 
+        private void BtnEditSubtitle_Click(object sender, EventArgs e)
+        {
+            if (listAddedSubtitles.SelectedItems.Count == 1)
+            {
+                int index = listAddedSubtitles.SelectedItems[0].Index;
+                FrmEditLine.Edit(addedSubtitles[index].Content, str => addedSubtitles[index].Content = str);
+                loadAddedView();
+            }
+            else {
+                MessageBox.Show("目前一次只能编辑一行");
+            }
+        }
+
+        private void MnuExport_Click(object sender, EventArgs e)
+        {
+            new SrtExportor().Export(addedSubtitles);
+            MessageBox.Show("导出成功");
+        }
+    }
+
+    class SrtExportor : IExportor
+    {
+        public void Export(IEnumerable<SubtitleClass> subs)
+        {
+            StringBuilder sb = new StringBuilder();
+            int ptr = 1;
+            foreach (SubtitleClass sub in subs) {
+                sb.Append(ptr);
+                sb.AppendLine();
+                sb.Append(sub.BeginTime.ToString("hh\\:mm\\:ss\\.fff") + " --> " + sub.EndTime.ToString("hh\\:mm\\:ss\\.fff"));
+                sb.AppendLine();
+                sb.Append(sub.Content);
+                sb.AppendLine();
+                sb.AppendLine();
+                ptr++;
+            }
+            File.WriteAllText("video.srt", sb.ToString(), Encoding.UTF8);
+        }
     }
 }
