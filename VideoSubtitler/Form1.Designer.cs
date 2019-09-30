@@ -48,6 +48,7 @@
             this.btnSub5Sec = new System.Windows.Forms.Button();
             this.btnSub1Sec = new System.Windows.Forms.Button();
             this.lblRealTimeSubtitle = new System.Windows.Forms.Label();
+            this.videoView = new VideoSubtitler.VideoView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -75,6 +76,7 @@
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCompressSubs = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +84,6 @@
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.videoView = new VideoSubtitler.VideoView();
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -131,7 +132,7 @@
             // 
             this.btnPlayStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPlayStop.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.btnPlayStop.Location = new System.Drawing.Point(3, 323);
+            this.btnPlayStop.Location = new System.Drawing.Point(3, 326);
             this.btnPlayStop.Name = "btnPlayStop";
             this.btnPlayStop.Size = new System.Drawing.Size(103, 47);
             this.btnPlayStop.TabIndex = 1;
@@ -145,9 +146,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.valPosition.AutoSize = false;
             this.valPosition.LargeChange = 1000;
-            this.valPosition.Location = new System.Drawing.Point(4, 372);
+            this.valPosition.Location = new System.Drawing.Point(4, 375);
             this.valPosition.Name = "valPosition";
-            this.valPosition.Size = new System.Drawing.Size(467, 29);
+            this.valPosition.Size = new System.Drawing.Size(483, 29);
             this.valPosition.TabIndex = 2;
             this.valPosition.TickFrequency = 1000;
             this.valPosition.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
@@ -161,9 +162,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTime.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.Location = new System.Drawing.Point(156, 323);
+            this.lblTime.Location = new System.Drawing.Point(156, 326);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(268, 47);
+            this.lblTime.Size = new System.Drawing.Size(284, 47);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "00:00:00.000";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -178,7 +179,7 @@
             this.groupBox1.Controls.Add(this.listAddedSubtitles);
             this.groupBox1.Location = new System.Drawing.Point(3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(292, 342);
+            this.groupBox1.Size = new System.Drawing.Size(292, 345);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "已添加的字幕";
@@ -186,7 +187,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(88, 313);
+            this.btnDelete.Location = new System.Drawing.Point(88, 316);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 1;
@@ -197,7 +198,7 @@
             // btnEditSubtitle
             // 
             this.btnEditSubtitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditSubtitle.Location = new System.Drawing.Point(7, 313);
+            this.btnEditSubtitle.Location = new System.Drawing.Point(7, 316);
             this.btnEditSubtitle.Name = "btnEditSubtitle";
             this.btnEditSubtitle.Size = new System.Drawing.Size(75, 23);
             this.btnEditSubtitle.TabIndex = 1;
@@ -218,7 +219,7 @@
             this.listAddedSubtitles.HideSelection = false;
             this.listAddedSubtitles.Location = new System.Drawing.Point(7, 21);
             this.listAddedSubtitles.Name = "listAddedSubtitles";
-            this.listAddedSubtitles.Size = new System.Drawing.Size(277, 290);
+            this.listAddedSubtitles.Size = new System.Drawing.Size(277, 293);
             this.listAddedSubtitles.TabIndex = 0;
             this.listAddedSubtitles.UseCompatibleStateImageBehavior = false;
             this.listAddedSubtitles.View = System.Windows.Forms.View.Details;
@@ -239,7 +240,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.lblPlayBackSpeed);
             this.groupBox2.Controls.Add(this.valPlaybackSpeed);
-            this.groupBox2.Location = new System.Drawing.Point(3, 352);
+            this.groupBox2.Location = new System.Drawing.Point(3, 355);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(292, 47);
             this.groupBox2.TabIndex = 5;
@@ -298,14 +299,14 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(789, 406);
-            this.splitContainer1.SplitterDistance = 479;
+            this.splitContainer1.Size = new System.Drawing.Size(805, 409);
+            this.splitContainer1.SplitterDistance = 495;
             this.splitContainer1.TabIndex = 6;
             // 
             // btnAdd5Sec
             // 
             this.btnAdd5Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd5Sec.Location = new System.Drawing.Point(430, 347);
+            this.btnAdd5Sec.Location = new System.Drawing.Point(446, 350);
             this.btnAdd5Sec.Name = "btnAdd5Sec";
             this.btnAdd5Sec.Size = new System.Drawing.Size(41, 23);
             this.btnAdd5Sec.TabIndex = 5;
@@ -317,7 +318,7 @@
             // btnAdd1Sec
             // 
             this.btnAdd1Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd1Sec.Location = new System.Drawing.Point(430, 323);
+            this.btnAdd1Sec.Location = new System.Drawing.Point(446, 326);
             this.btnAdd1Sec.Name = "btnAdd1Sec";
             this.btnAdd1Sec.Size = new System.Drawing.Size(41, 23);
             this.btnAdd1Sec.TabIndex = 5;
@@ -329,7 +330,7 @@
             // btnSub5Sec
             // 
             this.btnSub5Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSub5Sec.Location = new System.Drawing.Point(112, 347);
+            this.btnSub5Sec.Location = new System.Drawing.Point(112, 350);
             this.btnSub5Sec.Name = "btnSub5Sec";
             this.btnSub5Sec.Size = new System.Drawing.Size(38, 23);
             this.btnSub5Sec.TabIndex = 5;
@@ -341,7 +342,7 @@
             // btnSub1Sec
             // 
             this.btnSub1Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSub1Sec.Location = new System.Drawing.Point(112, 323);
+            this.btnSub1Sec.Location = new System.Drawing.Point(112, 326);
             this.btnSub1Sec.Name = "btnSub1Sec";
             this.btnSub1Sec.Size = new System.Drawing.Size(38, 23);
             this.btnSub1Sec.TabIndex = 5;
@@ -355,11 +356,26 @@
             this.lblRealTimeSubtitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRealTimeSubtitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRealTimeSubtitle.Location = new System.Drawing.Point(3, 281);
+            this.lblRealTimeSubtitle.Location = new System.Drawing.Point(3, 284);
             this.lblRealTimeSubtitle.Name = "lblRealTimeSubtitle";
-            this.lblRealTimeSubtitle.Size = new System.Drawing.Size(468, 38);
+            this.lblRealTimeSubtitle.Size = new System.Drawing.Size(484, 38);
             this.lblRealTimeSubtitle.TabIndex = 4;
             this.lblRealTimeSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // videoView
+            // 
+            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoView.BackColor = System.Drawing.Color.Black;
+            this.videoView.Location = new System.Drawing.Point(3, 3);
+            this.videoView.Name = "videoView";
+            this.videoView.PlayBackSpeed = 1D;
+            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
+            this.videoView.PositionInt = 0;
+            this.videoView.Size = new System.Drawing.Size(484, 278);
+            this.videoView.TabIndex = 0;
+            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
             // 
             // splitContainer2
             // 
@@ -378,8 +394,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(789, 636);
-            this.splitContainer2.SplitterDistance = 406;
+            this.splitContainer2.Size = new System.Drawing.Size(805, 639);
+            this.splitContainer2.SplitterDistance = 409;
             this.splitContainer2.TabIndex = 7;
             // 
             // splitContainer3
@@ -397,8 +413,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer3.Size = new System.Drawing.Size(789, 226);
-            this.splitContainer3.SplitterDistance = 479;
+            this.splitContainer3.Size = new System.Drawing.Size(805, 226);
+            this.splitContainer3.SplitterDistance = 495;
             this.splitContainer3.TabIndex = 3;
             // 
             // groupBox3
@@ -408,7 +424,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(477, 224);
+            this.groupBox3.Size = new System.Drawing.Size(493, 224);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "准备添加的字幕";
@@ -422,7 +438,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnClear);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 15);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(465, 14);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(481, 14);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // btnAddFromTxt
@@ -470,7 +486,7 @@
             this.listReadyAdd.HideSelection = false;
             this.listReadyAdd.Location = new System.Drawing.Point(6, 30);
             this.listReadyAdd.Name = "listReadyAdd";
-            this.listReadyAdd.Size = new System.Drawing.Size(465, 185);
+            this.listReadyAdd.Size = new System.Drawing.Size(481, 185);
             this.listReadyAdd.TabIndex = 0;
             this.listReadyAdd.UseCompatibleStateImageBehavior = false;
             this.listReadyAdd.View = System.Windows.Forms.View.Details;
@@ -673,7 +689,7 @@
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(795, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(811, 25);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -682,6 +698,7 @@
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuSave,
             this.mnuExport,
+            this.mnuCompressSubs,
             this.mnuCloseProject,
             this.toolStripSeparator1,
             this.mnuExit,
@@ -703,6 +720,13 @@
             this.mnuExport.Size = new System.Drawing.Size(180, 22);
             this.mnuExport.Text = "导出字幕";
             this.mnuExport.Click += new System.EventHandler(this.MnuExport_Click);
+            // 
+            // mnuCompressSubs
+            // 
+            this.mnuCompressSubs.Name = "mnuCompressSubs";
+            this.mnuCompressSubs.Size = new System.Drawing.Size(180, 22);
+            this.mnuCompressSubs.Text = "压制字幕";
+            this.mnuCompressSubs.Click += new System.EventHandler(this.MnuCompressSubs_Click);
             // 
             // mnuCloseProject
             // 
@@ -747,25 +771,10 @@
             // 
             this.openFileDialog1.Filter = "文本文件|*.txt";
             // 
-            // videoView
-            // 
-            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.videoView.BackColor = System.Drawing.Color.Black;
-            this.videoView.Location = new System.Drawing.Point(3, 3);
-            this.videoView.Name = "videoView";
-            this.videoView.PlayBackSpeed = 1D;
-            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
-            this.videoView.PositionInt = 0;
-            this.videoView.Size = new System.Drawing.Size(468, 275);
-            this.videoView.TabIndex = 0;
-            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(795, 667);
+            this.ClientSize = new System.Drawing.Size(811, 670);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
@@ -876,6 +885,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.ToolStripMenuItem mnuExport;
         private System.Windows.Forms.ToolStripMenuItem mnuExitNoSave;
+        private System.Windows.Forms.ToolStripMenuItem mnuCompressSubs;
     }
 }
 

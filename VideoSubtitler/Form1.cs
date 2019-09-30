@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -280,6 +281,7 @@ namespace VideoSubtitler
         private void MnuSave_Click(object sender, EventArgs e)
         {
             save();
+            MessageBox.Show("保存成功");
         }
 
         private void MnuExit_Click(object sender, EventArgs e)
@@ -360,6 +362,23 @@ namespace VideoSubtitler
         {
             new SrtExportor().Export(addedSubtitles);
             MessageBox.Show("导出成功");
+            OpenFolderAndSelectFile("video.srt");
+        }
+
+
+
+        private void MnuCompressSubs_Click(object sender, EventArgs e)
+        {
+            new SrtExportor().Export(addedSubtitles);
+            new FrmCompressSubtitle().ShowDialog();
+
+        }
+
+        private void OpenFolderAndSelectFile(String fileFullName)
+        {
+            ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
+            psi.Arguments = "/e,/select," + fileFullName;
+            Process.Start(psi);
         }
     }
 

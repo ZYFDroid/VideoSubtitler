@@ -91,6 +91,12 @@
     <Compile Include="FrmAddByManual.Designer.cs">
       <DependentUpon>FrmAddByManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCompressSubtitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCompressSubtitle.Designer.cs">
+      <DependentUpon>FrmCompressSubtitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmEditLine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddByManual.resx">
       <DependentUpon>FrmAddByManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCompressSubtitle.resx">
+      <DependentUpon>FrmCompressSubtitle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEditLine.resx">
       <DependentUpon>FrmEditLine.cs</DependentUpon>
@@ -147,9 +156,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ffmpeg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="video.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
