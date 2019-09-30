@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,19 @@ namespace TestUnit
     {
         static void Main(string[] args)
         {
-            List<VideoSubtitler.SubtitleClass> subs = new List<VideoSubtitler.SubtitleClass>();
-            for (double i = 0; i < 100; i++) {
-                subs.Add(new VideoSubtitler.SubtitleClass { Content = i.ToString(), BeginTime = TimeSpan.FromSeconds(i), EndTime = TimeSpan.FromSeconds(i + 0.9) });
+            try
+            {
+                doSomething();
             }
-
-            string json=JsonConvert.SerializeObject(subs);
-            Console.WriteLine(json);
-            Console.ReadLine();
-
-            var des = JsonConvert.DeserializeObject<List<VideoSubtitler.SubtitleClass>>(json);
-            foreach (VideoSubtitler.SubtitleClass sub in des) {
-                Console.WriteLine(JsonConvert.SerializeObject(sub));
+            catch (Exception ex) {
+                //报错自动百度
+                Process.Start("http://www.baidu.com/s?wd=C%23+"+ex.GetType().Name);
             }
-
             Console.ReadLine();
+        }
+
+        static void doSomething() {
+            Console.WriteLine(int.Parse("acvanrfeiougvbhna"));
         }
     }
 }

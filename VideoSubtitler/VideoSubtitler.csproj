@@ -91,6 +91,13 @@
     <Compile Include="FrmAddByManual.Designer.cs">
       <DependentUpon>FrmAddByManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmEditLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditLine.Designer.cs">
+      <DependentUpon>FrmEditLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IExportor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubtitleClass.cs" />
@@ -108,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddByManual.resx">
       <DependentUpon>FrmAddByManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditLine.resx">
+      <DependentUpon>FrmEditLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
