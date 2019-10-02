@@ -69,7 +69,12 @@ namespace VideoSubtitler
             InitializeComponent();
         }
 
-        const string videopathSave = "videopath.dat";
+        string videopathSave {
+            get {
+                string fname = "videopath.dat";
+                return Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), fname);
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             bool haveFile = false;
@@ -93,10 +98,10 @@ namespace VideoSubtitler
                         string workingDict = Path.GetDirectoryName(fname);
                         VideoPath = Path.GetFileName(fname);
                         Environment.CurrentDirectory = workingDict;
+                        this.TopMost = true;
                     }
                 }
                 else {
-                    MessageBox.Show("那就等选好视频了再来吧");
                     Application.Exit();
                     return;
                 }
@@ -107,6 +112,7 @@ namespace VideoSubtitler
                 load();
                 loadAddedView();
             }
+            this.TopMost = false;
         }
 
         private void BtnPlayBack_Click(object sender, EventArgs e)
@@ -423,6 +429,15 @@ namespace VideoSubtitler
             ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
             psi.Arguments = "/e,/select," + fileFullName;
             Process.Start(psi);
+        }
+
+        private void MnuCloseProject_Click(object sender, EventArgs e)
+        {
+            string savePath = Path.Combine(videopathSave);
+            File.Delete(savePath);
+            Application.Exit();
+
+            Process.Start(Application.ExecutablePath);
         }
     }
 

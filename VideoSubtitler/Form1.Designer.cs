@@ -734,6 +734,7 @@
             this.mnuCloseProject.Name = "mnuCloseProject";
             this.mnuCloseProject.Size = new System.Drawing.Size(136, 22);
             this.mnuCloseProject.Text = "关闭工程";
+            this.mnuCloseProject.Click += new System.EventHandler(this.MnuCloseProject_Click);
             // 
             // toolStripSeparator1
             // 
@@ -771,10 +772,12 @@
             // ofText
             // 
             this.ofText.Filter = "文本文件|*.txt";
+            this.ofText.Title = "选择文本文件，编码 必须是UTF8";
             // 
             // ofVideo
             // 
             this.ofVideo.Filter = "支持的视频文件|*.mp4|所有文件(如果打开不会黑屏)|*.*";
+            this.ofVideo.Title = "选择一个视频文件";
             // 
             // Form1
             // 
