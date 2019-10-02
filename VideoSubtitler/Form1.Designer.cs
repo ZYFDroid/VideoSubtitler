@@ -48,7 +48,6 @@
             this.btnSub5Sec = new System.Windows.Forms.Button();
             this.btnSub1Sec = new System.Windows.Forms.Button();
             this.lblRealTimeSubtitle = new System.Windows.Forms.Label();
-            this.videoView = new VideoSubtitler.VideoView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -85,6 +84,7 @@
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ofText = new System.Windows.Forms.OpenFileDialog();
             this.ofVideo = new System.Windows.Forms.OpenFileDialog();
+            this.videoView = new VideoSubtitler.VideoView();
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -363,21 +363,6 @@
             this.lblRealTimeSubtitle.TabIndex = 4;
             this.lblRealTimeSubtitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // videoView
-            // 
-            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.videoView.BackColor = System.Drawing.Color.Black;
-            this.videoView.Location = new System.Drawing.Point(3, 3);
-            this.videoView.Name = "videoView";
-            this.videoView.PlayBackSpeed = 1D;
-            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
-            this.videoView.PositionInt = 0;
-            this.videoView.Size = new System.Drawing.Size(484, 278);
-            this.videoView.TabIndex = 0;
-            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -581,7 +566,7 @@
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 27);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(47, 12);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(59, 12);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // lblPrevs
@@ -590,9 +575,9 @@
             this.lblPrevs.AutoSize = true;
             this.lblPrevs.Location = new System.Drawing.Point(3, 0);
             this.lblPrevs.Name = "lblPrevs";
-            this.lblPrevs.Size = new System.Drawing.Size(41, 12);
+            this.lblPrevs.Size = new System.Drawing.Size(53, 12);
             this.lblPrevs.TabIndex = 0;
-            this.lblPrevs.Text = "上一条";
+            this.lblPrevs.Text = "[上一条]";
             this.lblPrevs.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnCurrent
@@ -626,7 +611,7 @@
             this.flowLayoutPanel5.Controls.Add(this.lblNexts);
             this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(47, 12);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(59, 12);
             this.flowLayoutPanel5.TabIndex = 0;
             // 
             // lblNexts
@@ -635,9 +620,9 @@
             this.lblNexts.AutoSize = true;
             this.lblNexts.Location = new System.Drawing.Point(3, 0);
             this.lblNexts.Name = "lblNexts";
-            this.lblNexts.Size = new System.Drawing.Size(41, 12);
+            this.lblNexts.Size = new System.Drawing.Size(53, 12);
             this.lblNexts.TabIndex = 1;
-            this.lblNexts.Text = "下一条";
+            this.lblNexts.Text = "[下一条]";
             this.lblNexts.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // splitContainer4
@@ -778,6 +763,21 @@
             // 
             this.ofVideo.Filter = "支持的视频文件|*.mp4|所有文件(如果打开不会黑屏)|*.*";
             this.ofVideo.Title = "选择一个视频文件";
+            // 
+            // videoView
+            // 
+            this.videoView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoView.BackColor = System.Drawing.Color.Black;
+            this.videoView.Location = new System.Drawing.Point(3, 3);
+            this.videoView.Name = "videoView";
+            this.videoView.PlayBackSpeed = 1D;
+            this.videoView.Position = System.TimeSpan.Parse("00:00:00");
+            this.videoView.PositionInt = 0;
+            this.videoView.Size = new System.Drawing.Size(484, 278);
+            this.videoView.TabIndex = 0;
+            this.videoView.PlayStateChanged += new System.EventHandler<System.EventArgs>(this.VideoView_PlayStateChanged);
             // 
             // Form1
             // 

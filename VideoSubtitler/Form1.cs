@@ -363,7 +363,7 @@ namespace VideoSubtitler
                 SubtitleClass sub = currentAddedSubtitles[currentAddedSubtitles.Count - 1];
                 currentAddedSubtitles.RemoveAt(currentAddedSubtitles.Count - 1);
                 videoView.Position = sub.BeginTime - TimeSpan.FromSeconds(1);
-                currentAddingSubs.Add(sub.Content);
+                currentAddingSubs.Insert(0,sub.Content);
                 refreshAddSubView();
             }
         }
