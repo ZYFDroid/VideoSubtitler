@@ -8,6 +8,6 @@ namespace VideoSubtitler
 {
     public interface IExportor
     {
-        void Export(IEnumerable<SubtitleClass> subs);
+        void Export(IEnumerable<SubtitleClass> subs,string path);
     }
 }

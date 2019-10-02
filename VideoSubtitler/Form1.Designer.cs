@@ -83,7 +83,8 @@
             this.mnuExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ofText = new System.Windows.Forms.OpenFileDialog();
+            this.ofVideo = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.valPosition)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -161,10 +162,10 @@
             this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.Location = new System.Drawing.Point(156, 326);
+            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTime.Location = new System.Drawing.Point(187, 326);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(284, 47);
+            this.lblTime.Size = new System.Drawing.Size(223, 47);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "00:00:00.000";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -306,24 +307,24 @@
             // btnAdd5Sec
             // 
             this.btnAdd5Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd5Sec.Location = new System.Drawing.Point(446, 350);
+            this.btnAdd5Sec.Location = new System.Drawing.Point(416, 350);
             this.btnAdd5Sec.Name = "btnAdd5Sec";
-            this.btnAdd5Sec.Size = new System.Drawing.Size(41, 23);
+            this.btnAdd5Sec.Size = new System.Drawing.Size(71, 23);
             this.btnAdd5Sec.TabIndex = 5;
             this.btnAdd5Sec.Tag = "5000";
-            this.btnAdd5Sec.Text = "+5s";
+            this.btnAdd5Sec.Text = "快进5秒";
             this.btnAdd5Sec.UseVisualStyleBackColor = true;
             this.btnAdd5Sec.Click += new System.EventHandler(this.BtnSub1Sec_Click);
             // 
             // btnAdd1Sec
             // 
             this.btnAdd1Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd1Sec.Location = new System.Drawing.Point(446, 326);
+            this.btnAdd1Sec.Location = new System.Drawing.Point(416, 326);
             this.btnAdd1Sec.Name = "btnAdd1Sec";
-            this.btnAdd1Sec.Size = new System.Drawing.Size(41, 23);
+            this.btnAdd1Sec.Size = new System.Drawing.Size(71, 23);
             this.btnAdd1Sec.TabIndex = 5;
             this.btnAdd1Sec.Tag = "1000";
-            this.btnAdd1Sec.Text = "+1s";
+            this.btnAdd1Sec.Text = "快进1秒";
             this.btnAdd1Sec.UseVisualStyleBackColor = true;
             this.btnAdd1Sec.Click += new System.EventHandler(this.BtnSub1Sec_Click);
             // 
@@ -332,10 +333,10 @@
             this.btnSub5Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSub5Sec.Location = new System.Drawing.Point(112, 350);
             this.btnSub5Sec.Name = "btnSub5Sec";
-            this.btnSub5Sec.Size = new System.Drawing.Size(38, 23);
+            this.btnSub5Sec.Size = new System.Drawing.Size(69, 23);
             this.btnSub5Sec.TabIndex = 5;
             this.btnSub5Sec.Tag = "-5000";
-            this.btnSub5Sec.Text = "-5s";
+            this.btnSub5Sec.Text = "后退5秒";
             this.btnSub5Sec.UseVisualStyleBackColor = true;
             this.btnSub5Sec.Click += new System.EventHandler(this.BtnSub1Sec_Click);
             // 
@@ -344,10 +345,10 @@
             this.btnSub1Sec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSub1Sec.Location = new System.Drawing.Point(112, 326);
             this.btnSub1Sec.Name = "btnSub1Sec";
-            this.btnSub1Sec.Size = new System.Drawing.Size(38, 23);
+            this.btnSub1Sec.Size = new System.Drawing.Size(69, 23);
             this.btnSub1Sec.TabIndex = 5;
             this.btnSub1Sec.Tag = "-1000";
-            this.btnSub1Sec.Text = "-1s";
+            this.btnSub1Sec.Text = "后退1秒";
             this.btnSub1Sec.UseVisualStyleBackColor = true;
             this.btnSub1Sec.Click += new System.EventHandler(this.BtnSub1Sec_Click);
             // 
@@ -710,46 +711,46 @@
             // mnuSave
             // 
             this.mnuSave.Name = "mnuSave";
-            this.mnuSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuSave.Size = new System.Drawing.Size(136, 22);
             this.mnuSave.Text = "立刻保存";
             this.mnuSave.Click += new System.EventHandler(this.MnuSave_Click);
             // 
             // mnuExport
             // 
             this.mnuExport.Name = "mnuExport";
-            this.mnuExport.Size = new System.Drawing.Size(180, 22);
+            this.mnuExport.Size = new System.Drawing.Size(136, 22);
             this.mnuExport.Text = "导出字幕";
             this.mnuExport.Click += new System.EventHandler(this.MnuExport_Click);
             // 
             // mnuCompressSubs
             // 
             this.mnuCompressSubs.Name = "mnuCompressSubs";
-            this.mnuCompressSubs.Size = new System.Drawing.Size(180, 22);
+            this.mnuCompressSubs.Size = new System.Drawing.Size(136, 22);
             this.mnuCompressSubs.Text = "压制字幕";
             this.mnuCompressSubs.Click += new System.EventHandler(this.MnuCompressSubs_Click);
             // 
             // mnuCloseProject
             // 
             this.mnuCloseProject.Name = "mnuCloseProject";
-            this.mnuCloseProject.Size = new System.Drawing.Size(180, 22);
+            this.mnuCloseProject.Size = new System.Drawing.Size(136, 22);
             this.mnuCloseProject.Text = "关闭工程";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.Size = new System.Drawing.Size(136, 22);
             this.mnuExit.Text = "退出";
             this.mnuExit.Click += new System.EventHandler(this.MnuExit_Click);
             // 
             // mnuExitNoSave
             // 
             this.mnuExitNoSave.Name = "mnuExitNoSave";
-            this.mnuExitNoSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuExitNoSave.Size = new System.Drawing.Size(136, 22);
             this.mnuExitNoSave.Text = "不保存退出";
             this.mnuExitNoSave.Click += new System.EventHandler(this.MnuExitNoSave_Click);
             // 
@@ -767,9 +768,13 @@
             this.mnuAbout.Size = new System.Drawing.Size(100, 22);
             this.mnuAbout.Text = "关于";
             // 
-            // openFileDialog1
+            // ofText
             // 
-            this.openFileDialog1.Filter = "文本文件|*.txt";
+            this.ofText.Filter = "文本文件|*.txt";
+            // 
+            // ofVideo
+            // 
+            this.ofVideo.Filter = "支持的视频文件|*.mp4|所有文件(如果打开不会黑屏)|*.*";
             // 
             // Form1
             // 
@@ -878,7 +883,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuAbout;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog ofText;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
@@ -886,6 +891,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuExport;
         private System.Windows.Forms.ToolStripMenuItem mnuExitNoSave;
         private System.Windows.Forms.ToolStripMenuItem mnuCompressSubs;
+        private System.Windows.Forms.OpenFileDialog ofVideo;
     }
 }
 

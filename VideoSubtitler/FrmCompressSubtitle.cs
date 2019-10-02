@@ -14,12 +14,14 @@ namespace VideoSubtitler
 {
     public partial class FrmCompressSubtitle : Form
     {
+        private string normalCompress = "-i \"{:VIDEO}\" -vf subtitles=\"{:SUB}\" -y out.mp4";
+        private string fontCompress = "-i \"{:VIDEO}\" -vf subtitles=\"{:SUB}\":force_style='Fontsize={:FONTSIZE},Fontname={:FONTNAME},' -y out.mp4";
 
-        const string normalCompress = "-i video.mp4 -vf subtitles=video.srt -y out.mp4";
-        const string fontCompress = "-i video.mp4 -vf subtitles=video.srt:force_style='Fontsize={FONTSIZE},Fontname={FONTNAME},' -y out.mp4";
 
-        public FrmCompressSubtitle()
+        public FrmCompressSubtitle(string videoPath, string subPath)
         {
+            normalCompress = normalCompress.Replace("{:VIDEO}", videoPath).Replace("{:SUB}", subPath) ;
+            fontCompress = fontCompress.Replace("{:VIDEO}", videoPath).Replace("{:SUB}", subPath) ;
             InitializeComponent();
         }
 
@@ -48,7 +50,7 @@ namespace VideoSubtitler
             if (fontDialog1.ShowDialog() == DialogResult.OK) {
                 string size = fontDialog1.Font.Size.ToString();
                 string fontname = fontDialog1.Font.Name;
-                cmd = fontCompress.Replace("{FONTNAME}", fontname).Replace("{FONTSIZE}", size);
+                cmd = fontCompress.Replace("{:FONTNAME}", fontname).Replace("{:FONTSIZE}", size);
                 txtCmdline.Text = "ffmpeg.exe " + cmd;
                 lblChosenFont.Text = $"已选字体： {fontname}，大小为{size}";
             }
@@ -56,7 +58,7 @@ namespace VideoSubtitler
 
         private void BtnCompress_Click(object sender, EventArgs e)
         {
-            Process ps =  Process.Start("ffmpeg.exe",cmd);
+            Process ps =  Process.Start(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath),"ffmpeg.exe"),cmd);
             ps.WaitForExit();
             if (File.Exists("out.mp4")) {
                 OpenFolderAndSelectFile("out.mp4");

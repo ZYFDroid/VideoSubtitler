@@ -17,6 +17,20 @@ namespace VideoSubtitler
     public partial class Form1 : Form
     {
 
+        string VideoPath = "video.mp4";
+        string SubPath {
+            get {
+                return Path.GetFileNameWithoutExtension(VideoPath) + ".csub";
+            }
+        }
+
+        string SrtPath {
+            get
+            {
+                return Path.GetFileNameWithoutExtension(VideoPath) + ".srt";
+            }
+        }
+
         List<SubtitleClass> addedSubtitles = new List<SubtitleClass>();
         List<SubtitleClass> currentAddedSubtitles = new List<SubtitleClass>();
         List<string> readyAddingSubs = new List<string>();
@@ -55,11 +69,41 @@ namespace VideoSubtitler
             InitializeComponent();
         }
 
-
+        const string videopathSave = "videopath.dat";
         private void Form1_Load(object sender, EventArgs e)
         {
-            videoView.SetVideoFile("video.mp4");
-            if (File.Exists("sub.json")) {
+            bool haveFile = false;
+            if (File.Exists(videopathSave)) {
+                String fname = File.ReadAllText(videopathSave);
+                if (File.Exists(fname)) {
+                    haveFile = true;
+                    string workingDict = Path.GetDirectoryName(fname);
+                    VideoPath = Path.GetFileName(fname);
+                    Environment.CurrentDirectory = workingDict;
+                }
+            }
+
+            if (!haveFile) {
+                if (DialogResult.OK == ofVideo.ShowDialog())
+                {
+                    String fname = ofVideo.FileName;
+                    if (File.Exists(fname))
+                    {
+                        File.WriteAllText(videopathSave, fname);
+                        string workingDict = Path.GetDirectoryName(fname);
+                        VideoPath = Path.GetFileName(fname);
+                        Environment.CurrentDirectory = workingDict;
+                    }
+                }
+                else {
+                    MessageBox.Show("那就等选好视频了再来吧");
+                    Application.Exit();
+                    return;
+                }
+            }
+
+            videoView.SetVideoFile(VideoPath);
+            if (File.Exists(SubPath)) {
                 load();
                 loadAddedView();
             }
@@ -79,11 +123,11 @@ namespace VideoSubtitler
         }
 
         public void save() {
-            File.WriteAllText("sub.json", JsonConvert.SerializeObject(addedSubtitles));
+            File.WriteAllText(SubPath, JsonConvert.SerializeObject(addedSubtitles));
         }
 
         public void load() {
-            addedSubtitles = JsonConvert.DeserializeObject<List<SubtitleClass>>(File.ReadAllText("sub.json"));
+            addedSubtitles = JsonConvert.DeserializeObject<List<SubtitleClass>>(File.ReadAllText(SubPath));
         }
         private void MainTimer_Tick(object sender, EventArgs e)
         {
@@ -138,8 +182,8 @@ namespace VideoSubtitler
 
         private void BtnAddFromTxt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                readyAddingSubs.AddRange(File.ReadAllLines(openFileDialog1.FileName));
+            if (ofText.ShowDialog() == DialogResult.OK) {
+                readyAddingSubs.AddRange(File.ReadAllLines(ofText.FileName));
                 loadPreAddingList();
             }
         }
@@ -360,17 +404,17 @@ namespace VideoSubtitler
 
         private void MnuExport_Click(object sender, EventArgs e)
         {
-            new SrtExportor().Export(addedSubtitles);
+            new SrtExportor().Export(addedSubtitles, SrtPath);
             MessageBox.Show("导出成功");
-            OpenFolderAndSelectFile("video.srt");
+            OpenFolderAndSelectFile(SrtPath);
         }
 
 
 
         private void MnuCompressSubs_Click(object sender, EventArgs e)
         {
-            new SrtExportor().Export(addedSubtitles);
-            new FrmCompressSubtitle().ShowDialog();
+            new SrtExportor().Export(addedSubtitles, SrtPath);
+            new FrmCompressSubtitle(VideoPath,SrtPath).ShowDialog();
 
         }
 
@@ -384,7 +428,7 @@ namespace VideoSubtitler
 
     class SrtExportor : IExportor
     {
-        public void Export(IEnumerable<SubtitleClass> subs)
+        public void Export(IEnumerable<SubtitleClass> subs,string SrtPath)
         {
             StringBuilder sb = new StringBuilder();
             int ptr = 1;
@@ -398,7 +442,7 @@ namespace VideoSubtitler
                 sb.AppendLine();
                 ptr++;
             }
-            File.WriteAllText("video.srt", sb.ToString(), Encoding.UTF8);
+            File.WriteAllText(SrtPath, sb.ToString(), Encoding.UTF8);
         }
     }
 }
